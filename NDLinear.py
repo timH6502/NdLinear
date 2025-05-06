@@ -30,7 +30,7 @@ class NDLinear(nn.Module):
     def __init__(self, input_dimensions: list[int],
                  output_dimensions: list[int],
                  bias: bool = True,
-                 dimensionality_order: list[int] | None = None) -> None:
+                 dimensionality_order: list[int] = None) -> None:
         super().__init__()
         assert len(input_dimensions) == len(
             output_dimensions), 'input_dimensions and output_dimensions must have the same length'
@@ -41,7 +41,7 @@ class NDLinear(nn.Module):
 
         self.dimensionality_order = dimensionality_order or list(range(self.n))
 
-        assert min(dimensionality_order) >= 0 and max(dimensionality_order) < len(
+        assert min(self.dimensionality_order) >= 0 and max(self.dimensionality_order) < len(
             input_dimensions), 'dimensionality_order indices must be within [0, n-1]'
 
         self.layers = nn.ModuleList([
